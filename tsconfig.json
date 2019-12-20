@@ -6,6 +6,7 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -14,6 +15,11 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "@components/*": ["src/app/shared/components/*"],
+      "@model/*": ["src/app/shared/model/*"],
+      "@environments/*": ["src/environments/*"]
+    },
     "lib": [
       "es2018",
       "dom"
