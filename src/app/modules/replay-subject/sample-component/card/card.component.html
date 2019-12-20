@@ -1,4 +1,6 @@
-<div class="card" tabindex="0" (click)="doClick()">
+<div class="card" tabindex="0" >
   <span class="card-id">{{identifiedBy}}</span>
-  <span>New Component {{organization?.name}}</span>
+  <span>Component {{organization?.name}}</span>
+  <a class="delete-link" (click)="doClick()">Delete</a>
+
 </div>
