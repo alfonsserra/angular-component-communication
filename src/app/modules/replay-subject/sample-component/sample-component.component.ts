@@ -30,7 +30,7 @@ export class ReplaySubjectSampleComponentComponent implements OnInit {
   }
 
   public doSet() {
-    this.context.setCurrentOrg({id: this.getMessageId(), name: Date.now() + '', logo: 'logo'});
+      this.context.setCurrentOrg({id: this.getMessageId(), name: Date.now() + '', logo: 'logo'});
   }
 
   public doAdd(): void {

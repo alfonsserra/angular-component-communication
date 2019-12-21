@@ -1,10 +1,9 @@
 <div class="content">
   <h2>Replay Subject</h2>
-  <p>A variant of Subject that "replays" or emits old values to new subscribers. It buffers a set number of values and will emit those values immediately to any new subscribers in addition to emitting new values to existing subscribers.</p>
+  <p>A variant of Subject that "replays" or emits old values to new subscribers. It buffers a set number of values and will emit those values immediately to any new subscribers in addition to emitting new values to existing subscribers. In this example the buffer size is set to 1.</p>
 
   <div class="card-container">
     <app-card *ngFor="let card of cards" (add)="doRemove($event)" [identifiedBy]="card">
-
     </app-card>
   </div>
 
