@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReplaySubjectSampleComponentComponent } from './sample-component/sample-component.component';
 import { CardComponent } from './sample-component/card/card.component';
 import { SuiteContextService } from './services/suite-context.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { SuiteContextService } from './services/suite-context.service';
     ReplaySubjectSampleComponentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [SuiteContextService]
 })

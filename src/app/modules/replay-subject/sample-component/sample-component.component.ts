@@ -12,6 +12,8 @@ export class ReplaySubjectSampleComponentComponent implements OnInit {
   private lastComponentId = 1;
   private lastMessageId = 1;
 
+  public selectedOption: string;
+
   constructor(private context: SuiteContextService) {
   }
 
@@ -24,13 +26,14 @@ export class ReplaySubjectSampleComponentComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-
+    this.cards.push(this.getComponentId());
+    this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
   }
 
   public doSet() {
-      this.context.setCurrentOrg({id: this.getMessageId(), name: Date.now() + '', logo: 'logo'});
+      this.context.setCurrentOrg({id: this.getMessageId(), name: this.selectedOption + ''});
   }
 
   public doAdd(): void {

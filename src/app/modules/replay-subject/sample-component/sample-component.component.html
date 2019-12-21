@@ -1,14 +1,23 @@
 <div class="content">
   <h2>Replay Subject</h2>
-  <p>A variant of Subject that "replays" or emits old values to new subscribers. It buffers a set number of values and will emit those values immediately to any new subscribers in addition to emitting new values to existing subscribers. In this example the buffer size is set to 1.</p>
+  <p>A variant of Subject that "replays" or emits old values to new subscribers. It buffers a set number of values and will emit those values immediately to any new subscribers in
+    addition to emitting new values to existing subscribers. In this example the buffer size is set to 1.</p>
 
   <div class="card-container">
     <app-card *ngFor="let card of cards" (add)="doRemove($event)" [identifiedBy]="card">
     </app-card>
   </div>
 
-  <div class="buttons pt-2 border-top">
-    <button class="btn btn-primary mr-2" type="button" (click)="doAdd()">Add</button>
-    <button class="btn btn-primary" type="button" (click)="doSet()">Set</button>
+  <div class="row w-100 pt-2 border-top">
+    <div class="col-sm-8">
+      <button class="btn btn-primary ml-auto" type="button" (click)="doAdd()">Add component</button>
+    </div>
+    <div class="col-sm-4">
+      <select class="form-control" [(ngModel)]="selectedOption"  (change)="doSet()">
+        <option value="+47">Norge (+47)</option>
+        <option value="+46">Sverige (+46)</option>
+        <option value="+45">Danmark (+45)</option>
+      </select>
+    </div>
   </div>
 </div>
