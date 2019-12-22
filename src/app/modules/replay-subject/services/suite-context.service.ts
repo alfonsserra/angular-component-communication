@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import { Organization } from '@model/organization.model';
+import { Country } from '@model/country.model';
 
 @Injectable()
 export class SuiteContextService {
-  private readonly currentOrgSubject = new ReplaySubject<Organization>(1);
 
-  public readonly currentOrg$ = this.currentOrgSubject.asObservable();
+  private readonly currentCountrySubject = new ReplaySubject<Country>(1);
 
-  public setCurrentOrg(org: Organization): void {
-    this.currentOrgSubject.next(org);
+  public readonly currentCountry$ = this.currentCountrySubject.asObservable();
+
+  public setCurrentCountry(country: Country): void {
+    this.currentCountrySubject.next(country);
   }
 }

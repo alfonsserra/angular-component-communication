@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SuiteContextService } from '../services/suite-context.service';
+import { Country } from '@model/country.model';
+import { CountryService } from '../services/country.service';
 
 @Component({
   selector:    'app-replay-subject-sample-component',
@@ -8,39 +10,37 @@ import { SuiteContextService } from '../services/suite-context.service';
 })
 export class ReplaySubjectSampleComponentComponent implements OnInit {
 
-  cards: Array<string> = [];
+  public cards: Array<string> = [];
   private lastComponentId = 1;
-  private lastMessageId = 1;
-
   public selectedOption: string;
 
-  constructor(private context: SuiteContextService) {
+  public countries: Array<Country>;
+
+  constructor(private countryService: CountryService, private context: SuiteContextService) {
   }
 
   private getComponentId(): string {
     return '' + this.lastComponentId++;
   }
 
-  private getMessageId(): string {
-    return '' + this.lastMessageId++;
-  }
-
   public ngOnInit(): void {
+    this.countries = this.countryService.getCountries();
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
   }
 
-  public doSet() {
-      this.context.setCurrentOrg({id: this.getMessageId(), name: this.selectedOption + ''});
+  public doSetCountry() {
+    const country = this.countryService.getCountry(this.selectedOption);
+    this.context.setCurrentCountry(country);
   }
 
-  public doAdd(): void {
+  public doAddCard(): void {
     this.cards.push(this.getComponentId());
   }
 
-  public doRemove(id: string): void {
+  public doRemoveCard(id: string): void {
     const index = this.cards.indexOf(id, 0);
     if (index > -1) {
       this.cards.splice(index, 1);

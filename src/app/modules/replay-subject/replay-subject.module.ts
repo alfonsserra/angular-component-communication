@@ -4,21 +4,23 @@ import { ReplaySubjectSampleComponentComponent } from './sample-component/sample
 import { CardComponent } from './sample-component/card/card.component';
 import { SuiteContextService } from './services/suite-context.service';
 import { FormsModule } from '@angular/forms';
-
-
+import { CountryService } from './services/country.service';
 
 @NgModule({
   declarations: [
     CardComponent,
     ReplaySubjectSampleComponentComponent
   ],
-  exports: [
+  exports:      [
     ReplaySubjectSampleComponentComponent
   ],
-  imports: [
+  imports:      [
     BrowserModule,
     FormsModule
   ],
-  providers: [SuiteContextService]
+  providers:    [
+    SuiteContextService,
+    CountryService]
 })
-export class ReplaySubjectModule { }
+export class ReplaySubjectModule {
+}

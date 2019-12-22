@@ -1,4 +1,4 @@
-export interface Organization {
+export interface Country {
   id?: string;
   name?: string;
 }
