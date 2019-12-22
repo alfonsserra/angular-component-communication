@@ -24,7 +24,8 @@ export class ReplaySubjectSampleComponentComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.countries = this.countryService.getCountries();
+    this.countryService.getCountries()
+      .subscribe((countries) => this.countries = countries);
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
@@ -32,8 +33,10 @@ export class ReplaySubjectSampleComponentComponent implements OnInit {
   }
 
   public doSetCountry() {
-    const country = this.countryService.getCountry(this.selectedOption);
-    this.context.setCurrentCountry(country);
+    this.countryService.getCountry(this.selectedOption)
+      .subscribe(country => this.context.setCurrentCountry(country),
+        (error) => console.log('error'),
+        () => console.log('complete'));
   }
 
   public doAddCard(): void {
