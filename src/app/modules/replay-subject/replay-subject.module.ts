@@ -5,11 +5,13 @@ import { CardComponent } from './sample-component/card/card.component';
 import { SuiteContextService } from './services/suite-context.service';
 import { FormsModule } from '@angular/forms';
 import { CountryService } from './services/country.service';
+import { CountrySelectComponent } from './sample-component/country-select/country-select.component';
 
 @NgModule({
   declarations: [
     CardComponent,
-    ReplaySubjectSampleComponentComponent
+    ReplaySubjectSampleComponentComponent,
+    CountrySelectComponent
   ],
   exports:      [
     ReplaySubjectSampleComponentComponent

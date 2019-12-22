@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SuiteContextService } from '../services/suite-context.service';
-import { Country } from '@model/country.model';
-import { CountryService } from '../services/country.service';
 
 @Component({
   selector:    'app-replay-subject-sample-component',
@@ -12,11 +9,8 @@ export class ReplaySubjectSampleComponentComponent implements OnInit {
 
   public cards: Array<string> = [];
   private lastComponentId = 1;
-  public selectedOption: string;
 
-  public countries: Array<Country>;
-
-  constructor(private countryService: CountryService, private context: SuiteContextService) {
+  constructor() {
   }
 
   private getComponentId(): string {
@@ -24,19 +18,10 @@ export class ReplaySubjectSampleComponentComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.countryService.getCountries()
-      .subscribe((countries) => this.countries = countries);
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
     this.cards.push(this.getComponentId());
-  }
-
-  public doSetCountry() {
-    this.countryService.getCountry(this.selectedOption)
-      .subscribe(country => this.context.setCurrentCountry(country),
-        (error) => console.log('error'),
-        () => console.log('complete'));
   }
 
   public doAddCard(): void {
