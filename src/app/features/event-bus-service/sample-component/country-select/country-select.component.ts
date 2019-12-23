@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Country } from '@model/country.model';
 import { Events, EmitEvent, EventBusService } from '../../services/event-bus.service';
 import { CountryService } from '@api/country.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector:    'app-country-select-for-event-bus',
   templateUrl: './country-select.component.html'
 })
-export class CountrySelectComponent implements OnInit {
+export class CountrySelectComponent implements OnInit, OnDestroy {
+
+  private subscription: Subscription = new Subscription();
 
   public selectedOption: string;
 
@@ -17,15 +20,20 @@ export class CountrySelectComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.countryService.getCountries()
-      .subscribe((countries) => this.countries = countries);
+    this.subscription.add(this.countryService.getCountries()
+      .subscribe((countries) => this.countries = countries));
   }
 
   public doSetCountry() {
-    this.countryService.getCountry(this.selectedOption)
+    this.subscription.add(this.countryService.getCountry(this.selectedOption)
       .subscribe(country => this.eventbus.emit(Events.CountrySelected, country),
         (error) => console.log('error'),
-        () => console.log('complete'));
+        () => console.log('complete')));
   }
 
+  public ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

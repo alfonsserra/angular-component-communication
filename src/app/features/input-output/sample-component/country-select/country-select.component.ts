@@ -1,12 +1,15 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Country } from '@model/country.model';
 import { CountryService } from '@api/country.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector:    'app-country-select-for-input-output',
   templateUrl: './country-select.component.html'
 })
-export class CountrySelectComponent implements OnInit {
+export class CountrySelectComponent implements OnInit, OnDestroy {
+
+  private subscription: Subscription = new Subscription();
 
   @Output() public select = new EventEmitter<Country>();
   public selectedOption: string;
@@ -17,13 +20,18 @@ export class CountrySelectComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.countryService.getCountries()
-      .subscribe((countries) => this.countries = countries);
+    this.subscription.add(this.countryService.getCountries()
+      .subscribe((countries) => this.countries = countries));
   }
 
   public doSetCountry() {
-    this.countryService.getCountry(this.selectedOption)
-      .subscribe((country => this.select.emit(country)));
+    this.subscription.add(this.countryService.getCountry(this.selectedOption)
+      .subscribe((country => this.select.emit(country))));
   }
 
+  public ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }
