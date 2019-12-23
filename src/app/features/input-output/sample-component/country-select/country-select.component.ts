@@ -9,12 +9,12 @@ import { Subscription } from 'rxjs';
 })
 export class CountrySelectComponent implements OnInit, OnDestroy {
 
+  @Output() public select = new EventEmitter<Country>();
+
   private subscription: Subscription = new Subscription();
 
-  @Output() public select = new EventEmitter<Country>();
-  public selectedOption: string;
-
   public countries: Array<Country>;
+  public selectedOption: string;
 
   constructor(private countryService: CountryService) {
   }

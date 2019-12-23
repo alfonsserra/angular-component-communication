@@ -13,14 +13,12 @@ export class CardComponent implements OnInit, OnDestroy {
 
   @Output() public remove = new EventEmitter<string>();
 
-  constructor() {
-  }
 
   public ngOnInit(): void {
     console.log('ngOnInit ' + this.identifiedBy);
   }
 
-  public doRemove() {
+  public doRemove(): void {
     this.remove.emit(this.identifiedBy);
   }
 

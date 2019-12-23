@@ -12,9 +12,6 @@ export class InputOutputSampleComponent implements OnInit {
   private lastComponentId = 1;
   public selectedCountry: Country;
 
-  constructor() {
-  }
-
   private getComponentId(): string {
     return '' + this.lastComponentId++;
   }
@@ -37,7 +34,7 @@ export class InputOutputSampleComponent implements OnInit {
     }
   }
 
-  public doSelectCountry(country: Country) {
+  public doSelectCountry(country: Country): void {
     this.selectedCountry = country;
   }
 }

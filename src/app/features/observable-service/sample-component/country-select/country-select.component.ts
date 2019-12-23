@@ -10,11 +10,10 @@ import { Subscription } from 'rxjs';
 })
 export class CountrySelectComponent implements OnInit, OnDestroy {
 
-  public selectedOption: string;
+  private subscription: Subscription = new Subscription();
 
   public countries: Array<Country>;
-
-  private subscription: Subscription = new Subscription();
+  public selectedOption: string;
 
   constructor(private countryService: CountryService, private dataService: DataService) {
   }
@@ -24,7 +23,7 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
       .subscribe((countries) => this.countries = countries));
   }
 
-  public doSetCountry() {
+  public doSetCountry(): void {
     this.subscription.add(this.countryService.getCountry(this.selectedOption)
       .subscribe(country => this.dataService.setCurrentCountry(country),
         (error) => console.log('error'),

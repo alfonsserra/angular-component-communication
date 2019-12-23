@@ -25,12 +25,12 @@ export class CardComponent implements OnInit, OnDestroy {
     console.log('ngOnInit ' + this.identifiedBy);
   }
 
-  private setCountry(country: Country) {
+  private setCountry(country: Country): void {
     this.country = country;
     console.log('component ' + this.identifiedBy + ' gets new value ' + country.id);
   }
 
-  public doRemove() {
+  public doRemove(): void {
     this.remove.emit(this.identifiedBy);
   }
 

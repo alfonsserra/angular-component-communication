@@ -17,11 +17,11 @@ export class CardComponent implements OnInit, OnDestroy {
   @Output() public remove = new EventEmitter<string>();
   public country: Country;
 
-  constructor(private eventbus: EventBusService) {
+  constructor(private eventBus: EventBusService) {
   }
 
   public ngOnInit(): void {
-    this.subscription = this.eventbus.on(Events.CountrySelected, o => this.setCountry(o));
+    this.subscription = this.eventBus.on(Events.CountrySelected, o => this.setCountry(o));
     console.log('ngOnInit ' + this.identifiedBy);
   }
 

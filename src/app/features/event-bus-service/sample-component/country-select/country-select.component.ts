@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Country } from '@model/country.model';
-import { Events, EmitEvent, EventBusService } from '../../services/event-bus.service';
+import { Events, EventBusService } from '../../services/event-bus.service';
 import { CountryService } from '@api/country.service';
 import { Subscription } from 'rxjs';
 
@@ -12,11 +12,10 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
+  public countries: Array<Country>;
   public selectedOption: string;
 
-  public countries: Array<Country>;
-
-  constructor(private countryService: CountryService, private eventbus: EventBusService) {
+  constructor(private countryService: CountryService, private eventBus: EventBusService) {
   }
 
   public ngOnInit(): void {
@@ -24,9 +23,9 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
       .subscribe((countries) => this.countries = countries));
   }
 
-  public doSetCountry() {
+  public doSetCountry(): void {
     this.subscription.add(this.countryService.getCountry(this.selectedOption)
-      .subscribe(country => this.eventbus.emit(Events.CountrySelected, country),
+      .subscribe(country => this.eventBus.emit(Events.CountrySelected, country),
         (error) => console.log('error'),
         () => console.log('complete')));
   }

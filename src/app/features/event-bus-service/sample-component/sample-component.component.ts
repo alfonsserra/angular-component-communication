@@ -10,9 +10,6 @@ export class EventBusSampleComponent implements OnInit {
   public cards: Array<string> = [];
   private lastComponentId = 1;
 
-  constructor() {
-  }
-
   private getComponentId(): string {
     return '' + this.lastComponentId++;
   }
