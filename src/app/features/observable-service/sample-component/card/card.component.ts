@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { SuiteContextService } from '../../services/suite-context.service';
+import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
 import { Country } from '@model/country.model';
 
 @Component({
-  selector:    'app-card',
+  selector:    'app-card-for-observable-service',
   templateUrl: './card.component.html',
   styleUrls:   ['./card.component.scss']
 })
@@ -17,11 +17,11 @@ export class CardComponent implements OnInit, OnDestroy {
   @Output() public remove = new EventEmitter<string>();
   public country: Country;
 
-  constructor(private context: SuiteContextService) {
+  constructor(private dataService: DataService) {
   }
 
   public ngOnInit(): void {
-    this.subscription = this.context.currentCountry$.subscribe(o => this.setCountry(o));
+    this.subscription = this.dataService.currentCountry$.subscribe(o => this.setCountry(o));
     console.log('ngOnInit ' + this.identifiedBy);
   }
 
@@ -35,7 +35,9 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
     console.log('ngOnDestroy ' + this.identifiedBy);
   }
 }

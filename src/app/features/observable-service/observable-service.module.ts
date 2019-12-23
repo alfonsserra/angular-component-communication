@@ -1,28 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReplaySubjectSampleComponentComponent } from './sample-component/sample-component.component';
+import { ObservableServiceSampleComponent } from './sample-component/sample-component.component';
 import { CardComponent } from './sample-component/card/card.component';
-import { SuiteContextService } from './services/suite-context.service';
+import { DataService } from './services/data.service';
 import { FormsModule } from '@angular/forms';
-import { CountryService } from './services/country.service';
 import { CountrySelectComponent } from './sample-component/country-select/country-select.component';
 
 @NgModule({
   declarations: [
     CardComponent,
-    ReplaySubjectSampleComponentComponent,
+    ObservableServiceSampleComponent,
     CountrySelectComponent
   ],
   exports:      [
-    ReplaySubjectSampleComponentComponent
+    ObservableServiceSampleComponent
   ],
   imports:      [
     BrowserModule,
     FormsModule
   ],
   providers:    [
-    SuiteContextService,
-    CountryService]
+    DataService]
 })
-export class ReplaySubjectModule {
+export class ObservableServiceModule {
 }

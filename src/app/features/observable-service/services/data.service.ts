@@ -3,7 +3,7 @@ import { ReplaySubject } from 'rxjs';
 import { Country } from '@model/country.model';
 
 @Injectable()
-export class SuiteContextService {
+export class DataService {
 
   private readonly currentCountrySubject = new ReplaySubject<Country>(1);
 

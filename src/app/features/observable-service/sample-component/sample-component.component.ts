@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector:    'app-replay-subject-sample-component',
+  selector:    'app-observable-service-sample-component',
   templateUrl: './sample-component.component.html',
   styleUrls:   ['./sample-component.component.scss']
 })
-export class ReplaySubjectSampleComponentComponent implements OnInit {
+export class ObservableServiceSampleComponent implements OnInit {
 
   public cards: Array<string> = [];
   private lastComponentId = 1;

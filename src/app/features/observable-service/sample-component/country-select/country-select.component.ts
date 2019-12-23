@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '@model/country.model';
-import { CountryService } from '../../services/country.service';
-import { SuiteContextService } from '../../services/suite-context.service';
+import { DataService } from '../../services/data.service';
+import { CountryService } from '@api/country.service';
 
 @Component({
-  selector:    'app-country-select',
+  selector:    'app-country-select-for-observable-service',
   templateUrl: './country-select.component.html'
 })
 export class CountrySelectComponent implements OnInit {
@@ -13,7 +13,7 @@ export class CountrySelectComponent implements OnInit {
 
   public countries: Array<Country>;
 
-  constructor(private countryService: CountryService, private context: SuiteContextService) {
+  constructor(private countryService: CountryService, private dataService: DataService) {
   }
 
   public ngOnInit(): void {
@@ -23,7 +23,7 @@ export class CountrySelectComponent implements OnInit {
 
   public doSetCountry() {
     this.countryService.getCountry(this.selectedOption)
-      .subscribe(country => this.context.setCurrentCountry(country),
+      .subscribe(country => this.dataService.setCurrentCountry(country),
         (error) => console.log('error'),
         () => console.log('complete'));
   }
