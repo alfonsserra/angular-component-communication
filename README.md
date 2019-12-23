@@ -1,6 +1,6 @@
 # Angular Component Communication
 
-This example show three options to enable the communication between different components. 
+This example compares three options to enable the communication between different components. 
 From the traditional approach based on Input and Outputs, to an Event Bus or to have a Observable service.
 
 Check the talk [Mastering the Subject – Communication Options in RxJS](https://www.youtube.com/watch?time_continue=3&v=_q-HL9YX_pk&feature=emb_logo) from Dan Wahlin at ng-conf 2019.
