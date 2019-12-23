@@ -1,12 +1,12 @@
-# Angular RxJs Subjects Training
+# Angular Component Communication
 
 ## Working with the repo
 
 In order to clone the repository and run the lessons use the following commands:
 
 ```bash
-git clone https://github.com/systelab/angular-reactive-subjects-training.git
-cd angular-reactive-subjects-training
+git clone https://github.com/systelab/angular-component-communication.git
+cd angular-component-communication
 npm install
 ng serve
 ```
