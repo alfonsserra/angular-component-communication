@@ -13,15 +13,15 @@ export class CardComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   @Input() public identifiedBy: string;
-
   @Output() public remove = new EventEmitter<string>();
+
   public country: Country;
 
   constructor(private dataService: DataService) {
   }
 
   public ngOnInit(): void {
-    this.subscription = this.dataService.currentCountry$.subscribe(o => this.setCountry(o));
+    this.subscription = this.dataService.currentCountry$.subscribe(this.setCountry);
     console.log('ngOnInit ' + this.identifiedBy);
   }
 

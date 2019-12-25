@@ -21,7 +21,7 @@ export class CountrySelectComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.subscription.add(this.countryService.getCountries()
-      .subscribe((countries) => this.countries = countries));
+      .subscribe(countries => this.countries = countries));
   }
 
   public doSetCountry() {
