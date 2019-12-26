@@ -21,7 +21,7 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.subscription = this.dataService.currentCountry$.subscribe(this.setCountry);
+    this.subscription = this.dataService.currentCountry$.subscribe(c => this.setCountry(c));
     console.log('ngOnInit ' + this.identifiedBy);
   }
 
